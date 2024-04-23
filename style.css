@@ -1,0 +1,127 @@
+      :root {
+      	color-scheme: light dark;
+      	--green: #00b755;
+      	--yellow: #daaf38;
+      	--red: #ca4754;
+      	--black: #222;
+      	--gray: #999;
+      }
+
+      body {
+      	background-color: #222;
+      	font-family: monospace;
+      	display: grid;
+      	place-content: center;
+      	justify-content: center;
+      	font-size: large;
+      	margin: 0;
+      	padding: 20px;
+      }
+
+      h1 {
+      	font-size: 30px;
+      	padding-left: 10%;
+      	padding-right: 10%;
+      	transition: color 0.4s linear;
+
+      	&.playing {
+      		color: transparent;
+      	}
+      }
+
+      section {
+      	display: flex;
+      	flex-direction: column;
+      }
+
+      time {
+      	padding-left: 10%;
+      	padding-right: 10%;
+      	margin-top: 200px;
+      	color: var(--yellow);
+      	font-size: xx-large;
+      }
+
+      input {
+      	pointer-events: none;
+      	opacity: 0;
+      }
+
+      p {
+      	display: flex;
+      	flex-wrap: wrap;
+      	text-wrap: pretty;
+      	gap: 3px 6px;
+      	font-size: xx-large;
+      	padding-left: 10%;
+      	padding-right: 10%;
+      }
+
+      letter {
+      	color: var(--gray);
+      	position: relative;
+
+      	&.active::before {
+      		content: "|";
+      		color: var(--yellow);
+      		font-size: xx-large;
+      		position: absolute;
+      		left: -50%;
+      		top: -10%;
+      		animation: 1s blink infinite ease-in-out;
+      	}
+
+      	&.correct {
+      		color: var(--green);
+      	}
+
+      	&.incorrect {
+      		color: var(--red);
+      	}
+
+      	&.active.isLast::before {
+      		left: 50%;
+      	}
+      }
+
+      word {
+      	border-bottom: 2px solid transparent;
+      	transition: border-color 0.3s ease-in-out;
+
+      	&.marked,
+      	&.emptyMarked {
+      		border-color: var(--red);
+      	}
+      }
+
+      @keyframes blink {
+
+      	0%,
+      	15% {
+      		opacity: 1;
+      	}
+
+      	55% {
+      		opacity: 0;
+      	}
+      }
+
+      #game {
+      	display: flex;
+      }
+
+      #results {
+      	display: none;
+      }
+
+      #reload-button {
+      	margin-top: 30px;
+      	background: transparent;
+      	border: 0;
+      	color: var(--gray);
+      }
+
+      #reload-button:hover {
+      	color: white;
+      	cursor: pointer;
+      }
