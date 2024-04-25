@@ -15,25 +15,30 @@ const INITIAL_TIME = 60;
 let words = [];
 let currentTime = INITIAL_TIME;
 let playing;
+let intervalId;
 
 initGame();
 initEvents();
 
 function initGame() {
+    $title.classList.remove("playing");
+    $time.classList.remove("playing");
     playing = false;
+    clearInterval(intervalId);
     reloadText();
     currentTime = INITIAL_TIME;
     $time.textContent = currentTime;
+    $input.focus()
 }
 
 function initEvents() {
     document.addEventListener('input', () => {
-        $input.focus()
         if (!playing) {
             $title.classList.add("playing");
+            $time.classList.add("playing");
             playing = true;
-            const intervalId = setInterval(() => {
-                currentTime--;
+            intervalId = setInterval(() => {
+                currentTime = currentTime - 1;
                 $time.textContent = currentTime;
 
                 if (currentTime == 0) {
@@ -45,8 +50,9 @@ function initEvents() {
     })
     $input.addEventListener("keydown", onKeyDown);
     $input.addEventListener("input", onInput);
-    $reloadText.addEventListener("click", reloadText);
+    $reloadText.addEventListener("click", initGame);
 }
+
 
 function reloadText() {
     words = INITIAL_WORDS.toSorted(() => Math.random() - 0.5).slice(0, 50);
@@ -65,9 +71,7 @@ function reloadText() {
     const $firstWord = $paragraph.querySelector("word");
     $firstWord.classList.add("active");
     $firstWord.querySelector("letter").classList.add("active");
-    console.log("recargamos el texto")
 }
-
 
 
 function onKeyDown(event) {

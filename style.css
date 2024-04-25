@@ -22,10 +22,10 @@
       	font-size: 30px;
       	padding-left: 10%;
       	padding-right: 10%;
-      	transition: color 0.4s linear;
+      	transition: color 0.3s linear;
 
       	&.playing {
-      		color: transparent;
+      		color: var(--gray);
       	}
       }
 
@@ -38,8 +38,12 @@
       	padding-left: 10%;
       	padding-right: 10%;
       	margin-top: 200px;
-      	color: var(--yellow);
+      	color: transparent;
       	font-size: xx-large;
+
+      	&.playing {
+      		color: var(--yellow);
+      	}
       }
 
       input {
@@ -91,6 +95,20 @@
       	&.marked,
       	&.emptyMarked {
       		border-color: var(--red);
+      	}
+      }
+
+      @keyframes typing {
+      	15% {
+      		margin-left: 20%;
+      	}
+
+      	50% {
+      		margin-left: 60%;
+      	}
+
+      	90% {
+      		margin-left: 90%;
       	}
       }
 
